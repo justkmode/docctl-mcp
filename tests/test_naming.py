@@ -43,3 +43,11 @@ def test_lowercase_is_invalid():
 def test_number_must_be_4_digits():
     errors = check_naming("NVN-JKR-ZZ-00-DR-A-01_P01.pdf")
     assert any("number" in e.lower() for e in errors)
+
+def test_garbage_name_does_not_crash():
+    errors = check_naming("holiday photo.jpg")
+    assert errors != []
+
+def test_bad_extension():
+    errors = check_naming("NVN-JKR-ZZ-00-DR-A-0001_P01.exe")
+    assert any("extension" in e.lower() for e in errors)
