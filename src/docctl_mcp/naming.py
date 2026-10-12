@@ -1,3 +1,5 @@
+import re
+
 from dataclasses import dataclass
 
 DOC_TYPES = {"DR", "M3", "SP", "RP", "SH", "CA", "MI"}
@@ -48,6 +50,34 @@ def parse_filename(filename: str) -> DocName:
         extension=extension
     )
 
+# The naming standard as configuration: field -> rule
+PATTERNS = {
+    "project": r"[A-Z0-9]{3,6}",
+    "originator": r"[A-Z0-9]{3,6}",
+    "volume": r"[A-Z0-9]{2}",
+    "level": r"[A-Z0-9]{2}",
+    "number": r"\d{4}",
+    "revision": r"[PC]\d{2}",
+}
+ALLOWED = {"doc_type": DOC_TYPES, "role": ROLES, "extension": EXTENSIONS}
+
+
 def check_naming(filename: str) -> list[str]:
-    raise NotImplementedError
+    # 1. Try to take the name apart. Garbage -> one friendly error, no crash.
+    try:
+        doc = parse_filename(filename)
+    except ValueError as exc:
+        return [f"Wrong structure ({exc}). Expected 7 fields like NVN-JKR-ZZ-00-DR-A-0001_P01.pdf"]
+
+    # 2. Check every field against its rule, collect ALL problems.
+    errors = []
+    for field, pattern in PATTERNS.items():
+        value = getattr(doc, field)
+        if not re.fullmatch(pattern, value):
+            errors.append(f"{field} '{value}' does not match rule {pattern}")
+    for field, allowed in ALLOWED.items():
+        value = getattr(doc, field)
+        if value not in allowed:
+            errors.append(f"{field} '{value}' is not allowed (allowed: {sorted(allowed)})")
+    return errors
 
