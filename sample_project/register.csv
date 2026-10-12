@@ -1,0 +1,16 @@
+doc_number,title,revision,status
+NVN-JKR-ZZ-00-DR-A-0001,Ground floor plan,P01,S2
+NVN-JKR-ZZ-01-DR-A-0002,First floor plan,P01,S2
+NVN-JKR-ZZ-RF-DR-A-0003,Roof plan,P01,S2
+NVN-JKR-ZZ-ZZ-DR-A-0004,Section A-A,P03,S2
+NVN-JKR-ZZ-ZZ-DR-A-0005,North elevation,C01,S2
+NVN-JKR-ZZ-B1-DR-S-0006,Foundation layout,P02,S2
+NVN-JKR-ZZ-01-DR-S-0007,Steel frame level 01,P01,S2
+NVN-JKR-ZZ-00-DR-M-0008,Ventilation layout level 00,P01,S2
+NVN-JKR-ZZ-00-DR-E-0009,Lighting layout level 00,P01,S2
+NVN-JKR-ZZ-ZZ-SP-A-0010,Architectural specification,P01,S2
+NVN-JKR-ZZ-ZZ-RP-S-0011,Structural calculation report,C02,S2
+NVN-JKR-ZZ-ZZ-M3-A-0012,Architectural model,P04,S2
+NVN-JKR-ZZ-ZZ-SH-E-0013,Cable schedule,P01,S2
+NVN-JKR-ZZ-ZZ-CA-C-0014,Drainage calculation,P01,S2
+NVN-JKR-ZZ-03-DR-A-0202,Third floor plan,P01,S2
