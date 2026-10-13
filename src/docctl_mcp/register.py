@@ -1,5 +1,12 @@
+import csv  
 from docctl_mcp.naming import parse_filename
 
+def load_register(path):  
+    register = {}
+    with open(path, newline="", encoding="utf-8") as f:
+        for row in csv.DictReader(f):
+            register[row["doc_number"]] = row
+    return register
 
 def compare_folder_to_register(filenames, register):
     # 1. Go through each file in the folder

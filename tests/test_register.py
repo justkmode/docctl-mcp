@@ -41,3 +41,9 @@ def test_revision_mismatch():
 def test_badly_named_file_is_ignored():
     files = ALL_GOOD + ["scan_final_v2.pdf"]
     assert compare_folder_to_register(files, REGISTER) == EMPTY
+
+def test_load_register_reads_sample_csv():
+    from docctl_mcp.register import load_register
+    register = load_register("sample_project/register.csv")
+    assert register["NVN-JKR-ZZ-00-DR-A-0001"]["revision"] == "P01"
+    assert register["NVN-JKR-ZZ-ZZ-DR-A-0004"]["revision"] == "P03"
