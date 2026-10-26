@@ -1,0 +1,36 @@
+# CI: on every push and pull request, lint the code and run the tests.
+name: CI
+
+# When to run: any push to any branch, and any pull request.
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    # Use a fresh Linux machine provided by GitHub for each run.
+    runs-on: ubuntu-latest
+
+    steps:
+      # Download this repo's code onto the machine.
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      # Install uv and set up Python 3.12; caching makes later runs faster.
+      - name: Set up uv and Python 3.12
+        uses: astral-sh/setup-uv@v6
+        with:
+          python-version: "3.12"
+          enable-cache: true
+
+      # Install exact versions from uv.lock; fail if the lock file is out of date.
+      - name: Install dependencies
+        run: uv sync --locked
+
+      # Check code style and common mistakes; stop here if anything is flagged.
+      - name: Lint with ruff
+        run: uv run ruff check .
+
+      # Run the test suite (from repo root, since tests use relative paths).
+      - name: Run tests
+        run: uv run pytest

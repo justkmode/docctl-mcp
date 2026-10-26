@@ -1,4 +1,4 @@
-from docctl_mcp.naming import parse_filename, check_naming
+from docctl_mcp.naming import check_naming, parse_filename
 
 VALID = "NVN-JKR-ZZ-00-DR-A-0001_P01.pdf"
 

@@ -1,5 +1,4 @@
 import re
-
 from dataclasses import dataclass
 
 DOC_TYPES = {"DR", "M3", "SP", "RP", "SH", "CA", "MI"}

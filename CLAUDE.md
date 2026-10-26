@@ -39,6 +39,8 @@ uv run python scripts/check_folder.py      # quick non-MCP naming check of the s
 uv run python scripts/agent_mcp.py         # local Ollama agent driving the server as an MCP client
 ```
 
+CI (`.github/workflows/ci.yml`) runs `uv sync --locked`, `uv run ruff check .` and `uv run pytest` on every push and pull request. Run both checks locally before pushing; if you change dependencies, commit the updated `uv.lock` too.
+
 `scripts/generate_sample.py` **deletes everything** in `sample_project/documents/` before recreating it. The sample files are committed, so only run it if you intend to reset them.
 
 The Ollama scripts (`scripts/agent*.py`) need a local `ollama serve` with the `qwen2.5:3b` model pulled.

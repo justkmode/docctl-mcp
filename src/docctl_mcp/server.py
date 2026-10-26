@@ -4,7 +4,6 @@ from pathlib import Path
 from mcp.server.mcpserver import MCPServer
 
 from docctl_mcp.naming import check_naming as _check_naming
-
 from docctl_mcp.register import compare_folder_to_register, load_register
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2] / "sample_project"

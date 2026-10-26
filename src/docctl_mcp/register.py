@@ -1,5 +1,7 @@
-import csv  
+import csv
+
 from docctl_mcp.naming import parse_filename
+
 
 def load_register(path):  
     register = {}
